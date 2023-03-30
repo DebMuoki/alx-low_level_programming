@@ -27,15 +27,15 @@ int main(void)
 	for (i = 0; i < 98; i++)
 	{
 	if (i % 10)
-	}
+	{
 	printf(" ");
 	}
 	if (!(i % 10) && i)
 	{
 	printf("\n");
 	}
-	rintf("0x%02x", s1[i]);
+	printf("0x%02x", s1[i]);
 	}
 	printf("\n");
 	return (0);
-
+}
