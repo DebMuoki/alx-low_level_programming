@@ -2,17 +2,17 @@
 /**
   * _puts_recursion - Prints a string
   * @s: pointer to string
-  * _putchar - prints characters
-  * Return: 0 when successful
+  * Return: return is void
   */
 
 void _puts_recursion(char *s)
 {
 	if (*s == '\0')
-		{
-			 _putchar('\n');
-			return;
-		}
-	_putchar(*s);
-	_puts_recursion(s + 1);
+		_putchar('\n');
+	else
+	{
+		_putchar(*s);
+		s++;
+		_puts_recursion(s);
+	}
 }
