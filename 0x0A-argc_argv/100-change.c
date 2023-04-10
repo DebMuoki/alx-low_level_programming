@@ -10,7 +10,7 @@
   */
 int main(int argc, char *argv[])
 {
-	int num, j, result;
+	int num, k, result;
 	int coins[] = {25, 10, 5, 2, 1};
 
 	if ((argc < 2 || argc > 2))
@@ -28,12 +28,12 @@ int main(int argc, char *argv[])
 		return (0);
 	}
 
-	for (j = 0; j < 5 && num >= 0; j++)
+	for (k = 0; k < 5 && num >= 0; k++)
 	{
-		while (num >= coins[j])
+		while (num >= coins[k])
 		{
 			result++;
-			num -= coins[j];
+			num -= coins[k];
 		}
 	}
 
