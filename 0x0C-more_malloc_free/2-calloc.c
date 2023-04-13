@@ -40,7 +40,7 @@ char *_memset(char *k, char j, unsigned int m)
  * @nmemb: number of elements to allocate memory for
  * @size: size in bytes of each element
  *
- * Return: pointer to allocated memory or NULL if nmemb/size is 0 or malloc fails
+ * Return: pointer to allocated memory or NULL if nmemb/size is 0
  */
 void *_calloc(unsigned int nmemb, unsigned int size)
 {
