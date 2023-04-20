@@ -6,7 +6,7 @@
  * asked by user
  * @s: Operator passed as argument to program
  *
- * Return: A pointer to function that corresponds to operator that has been  given as a
+ * Return: pointer to function corresponds to operator that has been  given as
  * parameter
  */
 
@@ -28,6 +28,6 @@ int (*get_op_func(char *s))(int, int)
 		return (ops[i].f);
 		i++;
 	}
-    	return (NULL);
+	return (NULL);
 }
 
