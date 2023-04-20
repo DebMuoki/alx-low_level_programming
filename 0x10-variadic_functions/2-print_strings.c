@@ -1,4 +1,7 @@
+#include <stdio.h>
 #include "variadic_functions.h"
+#include <stdarg.h>
+
 
 /**
  * print_strings - function that prints strings, followed by new line
@@ -16,7 +19,7 @@ void print_strings(const char *separator, const unsigned int n, ...)
 
 		va_start(args, n);
 
-		for (k = 0; k < n; k++) 
+		for (k = 0; k < n; k++)
 		{
 			str = va_arg(args, char *);
 
