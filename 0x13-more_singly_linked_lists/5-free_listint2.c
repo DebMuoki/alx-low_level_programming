@@ -1,7 +1,7 @@
 #include "lists.h"
 
 /**
-  * free_listint - frees a listint_t list and sets the head to null
+  * free_listint2 - frees a listint_t list and sets the head to null
   * @head: a pointer to a pointer to the head of the listint_t list
   * Function iterates through linked list,
   * freeing each node and setting the head to NULL
