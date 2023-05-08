@@ -6,11 +6,11 @@
 #define BUFFER_SIZE 1024
 
 /**
- * main - Copies the content of a file to another file.
- * @argc: The argument count.
- * @argv: An array of pointers to the arguments.
+ * main - it  Copies the content of a file to another file.
+ * @argc: This is the argument count.
+ * @argv: This is an array of pointers to the arguments.
  *
- * Return: If successful - 0.
+ * Return: Returns If successful - 0.
  */
 int main(int argc, char *argv[])
 {
@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]), exit(98);
 
 		write_count = write(to_fd, buffer, read_count);
-	if (write_count == -1)
+		if (write_count == -1)
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]), exit(99);
 	}
 
