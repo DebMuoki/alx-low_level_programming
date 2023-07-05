@@ -5,7 +5,7 @@
  * Return: the natural squareroot of the number
  **/
 
-int the_sqrt_recursion(int n, int index);
+
 
 int _sqrt_recursion(int n)
 {
@@ -20,9 +20,12 @@ int _sqrt_recursion(int n)
 /**
  * the_sqrt_recursion - this function finds the squareroot using recursion
  * @n: the number to find its square root
- * @index: the iterator
+ * @index: this is the iterator
  * Return: the return value is the actual value of the square root
  **/
+
+int the_sqrt_recursion(int n, int index);
+
 
 int the_sqrt_recursion(int n, int index)
 {
