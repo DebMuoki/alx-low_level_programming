@@ -2,10 +2,9 @@
 #include "main.h"
 
 /**
- * is_separator - Checks if a character is a separator.
- * @c: The character to check.
- *
- * Return: 1 if the character is a separator, 0 otherwise.
+ * is_separator - function checks if character is separator.
+ * @c: character to check.
+ * Return: 1 if separator, 0 otherwise.
  */
 
 int is_separator(char c)
@@ -14,10 +13,9 @@ int is_separator(char c)
 }
 
 /**
- * count_words - Counts the number of words in a string.
- * @str: The input string.
- *
- * Return: The number of words in the string.
+ * count_words - function Counts the number of words in a string.
+ * @str: input string.
+ * Return: number of words in string.
  */
 
 int count_words(char *str)
@@ -36,11 +34,9 @@ int count_words(char *str)
 }
 
 /**
- * strtow - Splits a string into words.
- * @str: The input string.
- *
- * Return: A pointer to an array of strings (words), or NULL
- *         or if memory allocation fails.
+ * strtow - function splits a string into words.
+ * @str: This is the input string.
+ * Return: A pointer to an array of strings or NULL
  */
 
 char **strtow(char *str)
