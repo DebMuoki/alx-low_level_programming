@@ -12,26 +12,26 @@
 char *argstostr(int ac, char **av)
 {
     if (ac == 0 || av == NULL)
-        return NULL;
+	return (NULL);
 
-    int total_length = 0;
-    for (int i = 0; i < ac; i++)
-        total_length += strlen(av[i]) + 1;
+	int total_length = 0;
+	for (int i = 0; i < ac; i++)
+	total_length += strlen(av[i]) + 1;
 
-    char *result = malloc((total_length + 1) * sizeof(char));
-    if (result == NULL)
-        return NULL;
+	char *result = malloc((total_length + 1) * sizeof(char));
+	if (result == NULL)
+	return NULL;
 
-    int position = 0;
-    for (int i = 0; i < ac; i++)
-    {
-        int arg_length = strlen(av[i]);
-        strncpy(result + position, av[i], arg_length);
-        position += arg_length;
-        result[position++] = '\n';
-    }
-    result[total_length] = '\0';
+	int position = 0;
+	for (int i = 0; i < ac; i++)
+	{
+	int arg_length = strlen(av[i]);
+	strncpy(result + position, av[i], arg_length);
+	position += arg_length;
+	result[position++] = '\n';
+	}
+	result[total_length] = '\0';
 
-    return result;
+	return (result);
 }
 
