@@ -3,46 +3,43 @@
 #include "dog.h"
 
 /**
- * new_dog - Creates a new dog
- * @name: Name of the dog
- * @age: Age of the dog
- * @owner: Owner of the dog
- *
- * Return: Pointer to the newly created dog
- *         NULL if the function fails
+ * new_dog - Function creates a new dog
+ * @name: The name of the dog
+ * @age: The age of the dog
+ * @owner: The Owner of the dog
+ * Return: Pointer to the newly created dog or NULL if otherwise
  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	dog_t *new_dog_ptr;
-	int name_length, owner_length;
+	dog_t *new_dog_;
+	int name_length1, owner_length2;
 
-	/* Calculate the lengths of the name and owner strings */
-	name_length = strlen(name);
-	owner_length = strlen(owner);
 
-	/* Allocate memory for the new dog struct */
-	new_dog_ptr = malloc(sizeof(dog_t));
-	if (new_dog_ptr == NULL)
+	length1 = strlen(name);
+	length2 = strlen(owner);
+
+
+	new_dog_ = malloc(sizeof(dog_t));
+	if (new_dog_ == NULL)
 	return (NULL);
 
-	/* Allocate memory for the name and owner strings */
-	new_dog_ptr->name = malloc((name_length + 1) * sizeof(char));
-	new_dog_ptr->owner = malloc((owner_length + 1) * sizeof(char));
-	if (new_dog_ptr->name == NULL || new_dog_ptr->owner == NULL)
+
+	new_dog_->name = malloc((length1 + 1) * sizeof(char));
+	new_dog_->owner = malloc((length2 + 1) * sizeof(char));
+	if (new_dog_->name == NULL || new_dog_->owner == NULL)
 	{
-	free(new_dog_ptr->name);
-	free(new_dog_ptr->owner);
-	free(new_dog_ptr);
+	free(new_dog_->name);
+	free(new_dog_->owner);
+	free(new_dog_);
 	return (NULL);
 	}
 
-	/* Copy the name and owner strings to the newly allocated memory */
-	strcpy(new_dog_ptr->name, name);
-	strcpy(new_dog_ptr->owner, owner);
 
-	/* Assign the age */
-	new_dog_ptr->age = age;
+	strcpy(new_dog_->name, name);
+	strcpy(new_dog_->owner, owner);
 
-	return (new_dog_ptr);
+	new_dog_->age = age;
+
+	return (new_dog_);
 }
 
