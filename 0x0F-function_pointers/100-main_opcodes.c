@@ -11,6 +11,7 @@
 int main(int argc, char *argv[])
 {
 	int i, num_bytes;
+	char *main_addr;
 
 	if (argc != 2)
 	{
@@ -24,10 +25,10 @@ int main(int argc, char *argv[])
 	if  (num_bytes < 0)
 	{
 		printf("Error\n");
-	exit(2);
+		exit(2);
 	}
 
-	char *main_addr = (unsigned char *)main;
+	main_addr = (char *)main;
 
 	for (i = 0; i < num_bytes; i++)
 	{
