@@ -2,9 +2,10 @@
 #include <stdlib.h>
 
 /**
- * print_opcodes - Prints opcodes of a given function.
- * @func: A pointer to the function whose opcodes are to be printed.
- * @bytes: The number of bytes to print.
+ * print_opcodes - Function that Prints opcodes of a given function.
+ * @func: function pointer to the function whose opcodes are to be printed.
+ * @bytes: This is the number of bytes to print.
+ * Return: return value is void
  */
 void print_opcodes(void (*func)(void), int bytes)
 {
@@ -22,10 +23,9 @@ void print_opcodes(void (*func)(void), int bytes)
 
 /**
  * main - Prints its own opcodes.
- * @argc: Number of arguments.
- * @argv: Array of arguments.
- *
- * Return: Always 0 (Success).
+ * @argc: The Number of arguments.
+ * @argv: The Array of arguments.
+ * Return: Always 0 on Success.
  */
 int main(int argc, char *argv[])
 {
