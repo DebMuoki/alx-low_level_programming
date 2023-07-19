@@ -15,8 +15,8 @@ int main(int argc, char *argv[])
 	if (argc != 2)
 	{
 	printf("Error\n");
-	}
 	return (1);
+	}
 
 
 	num_bytes = atoi(argv[1]);
@@ -27,13 +27,18 @@ int main(int argc, char *argv[])
 	return (2);
 	}
 
-	unsigned char *main_addr = (unsigned char *)main;
+	char *main_addr = (unsigned char *)main;
 
 	for (i = 0; i < num_bytes; i++)
 	{
-	printf("%02x", main_addr[i]);
+		if (i == num_bytes - 1)
+		{
+			printf("%02hhx\n", main_addr[i]);
+			break;
+		}
+		printf("%02hhx", main_addr[i]);
 	}
-	printf("\n");
+
 
 	return (0);
 }
