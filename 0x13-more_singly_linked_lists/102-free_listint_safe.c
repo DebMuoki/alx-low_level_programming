@@ -2,11 +2,9 @@
 #include <stdlib.h>
 
 /**
- * free_listint_safe - Frees a listint_t list safely.
- * @h: A double pointer to the head of the listint_t list.
- *
- * Return: The size of the list that was free'd.
- * The function sets the head to NULL.
+ * free_listint_safe - Function frees a listint_t list safely.
+ * @h: This is a double pointer to the head of the listint_t list.
+ * Return: Theis is the size of the list that was free'd.
  */
 size_t free_listint_safe(listint_t **h)
 {
