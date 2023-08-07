@@ -13,8 +13,8 @@
  */
 void handle_error(int error_code, const char *msg, const char *filename)
 {
-    dprintf(STDERR_FILENO, msg, filename);
-    exit(error_code);
+	dprintf(STDERR_FILENO, msg, filename);
+	exit(error_code);
 }
 
 /**
@@ -23,61 +23,72 @@ void handle_error(int error_code, const char *msg, const char *filename)
  */
 void display_elf_info(Elf64_Ehdr *elf_header)
 {
-    printf("ELF Header:\n");
-    printf("  Magic:   ");
-    for (int i = 0; i < EI_NIDENT; i++) {
-        printf("%02x ", elf_header->e_ident[i]);
-    }
-    printf("\n");
+	int i;
 
-    printf("  Class:                             ");
-    if (elf_header->e_ident[EI_CLASS] == ELFCLASS32) {
-        printf("ELF32\n");
-    } else if (elf_header->e_ident[EI_CLASS] == ELFCLASS64) {
-        printf("ELF64\n");
-    }
+	printf("ELF Header:\n");
+	printf("  Magic:   ");
+	for (i = 0; i < EI_NIDENT; i++)
+	{
+	printf("%02x ", elf_header->e_ident[i]);
+	}
+	printf("\n");
 
-    printf("  Data:                              ");
-    if (elf_header->e_ident[EI_DATA] == ELFDATA2LSB) {
-        printf("2's complement, little endian\n");
-    } else if (elf_header->e_ident[EI_DATA] == ELFDATA2MSB) {
-        printf("2's complement, big endian\n");
-    }
+	printf("  Class:                             ");
+	if (elf_header->e_ident[EI_CLASS] == ELFCLASS32)
+	{
+	printf("ELF32\n");
+	}
+	else if (elf_header->e_ident[EI_CLASS] == ELFCLASS64)
+	{
+	printf("ELF64\n");
+	}
 
-    printf("  Version:                           %d (current)\n", elf_header->e_ident[EI_VERSION]);
+	printf("  Data:                              ");
+	if (elf_header->e_ident[EI_DATA] == ELFDATA2LSB)
+	{
+	printf("2's complement, little endian\n");
+	}
+	else if (elf_header->e_ident[EI_DATA] == ELFDATA2MSB)
+	{
+	printf("2's complement, big endian\n");
+	}
 
-    printf("  OS/ABI:                            ");
-    switch (elf_header->e_ident[EI_OSABI]) {
-        case ELFOSABI_SYSV:
-            printf("UNIX - System V\n");
-            break;
-        case ELFOSABI_NETBSD:
-            printf("UNIX - NetBSD\n");
-            break;
-        case ELFOSABI_SOLARIS:
-            printf("UNIX - Solaris\n");
-            break;
-        default:
-            printf("<unknown: %d>\n", elf_header->e_ident[EI_OSABI]);
-            break;
-    }
+	printf("  Version:                           %d (current)\n", elf_header->e_ident[EI_VERSION]);
 
-    printf("  ABI Version:                       %d\n", elf_header->e_ident[EI_ABIVERSION]);
+	printf("  OS/ABI:                            ");
+	switch (elf_header->e_ident[EI_OSABI])
+	{
+	case ELFOSABI_SYSV:
+	printf("UNIX - System V\n");
+	break;
+	case ELFOSABI_NETBSD:
+	printf("UNIX - NetBSD\n");
+	break;
+	case ELFOSABI_SOLARIS:
+	printf("UNIX - Solaris\n");
+	break;
+	default:
+	printf("<unknown: %d>\n", elf_header->e_ident[EI_OSABI]);
+	break;
+	}
 
-    printf("  Type:                              ");
-    switch (elf_header->e_type) {
-        case ET_EXEC:
-            printf("EXEC (Executable file)\n");
-            break;
-        case ET_DYN:
-            printf("DYN (Shared object file)\n");
-            break;
-        default:
-            printf("<unknown: %d>\n", elf_header->e_type);
-            break;
-    }
+	printf("  ABI Version:                       %d\n", elf_header->e_ident[EI_ABIVERSION]);
 
-    printf("  Entry point address:               0x%lx\n", (unsigned long) elf_header->e_entry);
+	printf("  Type:                              ");
+	switch (elf_header->e_type)
+	{
+	case ET_EXEC:
+	printf("EXEC (Executable file)\n");
+	break;
+	case ET_DYN:
+	printf("DYN (Shared object file)\n");
+	break;
+	default:
+	printf("<unknown: %d>\n", elf_header->e_type);
+	break;
+	}
+
+	printf("  Entry point address:               0x%lx\n", (unsigned long) elf_header->e_entry);
 }
 
 /**
@@ -89,37 +100,39 @@ void display_elf_info(Elf64_Ehdr *elf_header)
  */
 int main(int argc, char *argv[])
 {
-    int fd;
-    Elf64_Ehdr elf_header;
+	int fd;
+	ssize_t bytes_read;
 
-    if (argc != 2)
-    {
-        dprintf(STDERR_FILENO, "Usage: %s elf_filename\n", argv[0]);
-        return (98);
-    }
+	Elf64_Ehdr elf_header;
 
-    fd = open(argv[1], O_RDONLY);
-    if (fd == -1)
-        handle_error(98, "Error: Cannot open file %s\n", argv[1]);
+	if (argc != 2)
+	{
+	dprintf(STDERR_FILENO, "Usage: %s elf_filename\n", argv[0]);
+	return (98);
+	}
 
-    ssize_t bytes_read = read(fd, &elf_header, sizeof(elf_header));
-    if (bytes_read != sizeof(elf_header))
-        handle_error(98, "Error: Cannot read ELF header from file %s\n", argv[1]);
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+	handle_error(98, "Error: Cannot open file %s\n", argv[1]);
 
-    if (elf_header.e_ident[EI_MAG0] != ELFMAG0 ||
-        elf_header.e_ident[EI_MAG1] != ELFMAG1 ||
-        elf_header.e_ident[EI_MAG2] != ELFMAG2 ||
-        elf_header.e_ident[EI_MAG3] != ELFMAG3)
-    {
-        dprintf(STDERR_FILENO, "Error: %s is not an ELF file\n", argv[1]);
-        close(fd);
-        return (98);
-    }
+	bytes_read = read(fd, &elf_header, sizeof(elf_header));
+	if (bytes_read != sizeof(elf_header))
+	handle_error(98, "Error: Cannot read ELF header from file %s\n", argv[1]);
 
-    display_elf_info(&elf_header);
+	if (elf_header.e_ident[EI_MAG0] != ELFMAG0 ||
+	elf_header.e_ident[EI_MAG1] != ELFMAG1 ||
+	elf_header.e_ident[EI_MAG2] != ELFMAG2 ||
+	elf_header.e_ident[EI_MAG3] != ELFMAG3)
+	{
+	dprintf(STDERR_FILENO, "Error: %s is not an ELF file\n", argv[1]);
+	close(fd);
+	return (98);
+	}
 
-    close(fd);
+	display_elf_info(&elf_header);
 
-    return (0);
+	close(fd);
+
+	return (0);
 }
 
