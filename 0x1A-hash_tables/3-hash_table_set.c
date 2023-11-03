@@ -7,7 +7,7 @@
  * hash_table_set - adds an element to the hash table
  * @ht: hash table you want to add or update the key/value to
  * @key: key is the key. key can not be an empty string
- * @value: value is the value associated with the key. value must be duplicated. value can be an empty string
+ * @value: value is the value associated with the key
  *
  * Return: 1 if it succeeded, 0 otherwise
  */
